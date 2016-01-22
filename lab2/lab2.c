@@ -21,7 +21,7 @@ int main ()
 	// after removing duplicate letters
     for (i=0, j=1; i < 20; i++) {
         printf("i = %d,  j = %d,  key[i] = %c\n", i, j, key[i]);
-        if(!found(alp, j, key[i])) { // && isalnum(key[i])) {
+        if(!found(alp, j, toupper(key[i])) && isalnum(key[i])) {
            alp[j-1] = toupper(key[i]); 
            j++;
         }
