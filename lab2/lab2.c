@@ -20,7 +20,7 @@ int main ()
 	// write code below to store the key in array alp 
 	// after removing duplicate letters
     for (i=0, j=1; i < 20; i++) {
-        if(!found(alp, j, key[i])) {
+        if(!found(alp, j, key[i]) && isalnum(key[i])) {
            alp[j-1] = toupper(key[i]); 
            j++;
         }
