@@ -19,12 +19,16 @@ int main ()
 
 	// write code below to store the key in array alp 
 	// after removing duplicate letters
+    for (i=0, j=1; i < 20; i++) {
+        if(!found(alp, j, key[i])) {
+           alp[j-1] = key[i]; 
+           j++;
+        }
+    }
 
 
-
-	// write code below to fill up the rest of array alp wiht
+	// write code below to fill up the rest of array alp with
 	// other characters in the alphabet in reverse order
-	
 	
 
 	// print characters in array alp
