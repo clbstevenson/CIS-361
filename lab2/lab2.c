@@ -21,7 +21,7 @@ int main ()
 	// after removing duplicate letters
     for (i=0, j=1; i < 20; i++) {
         if(!found(alp, j, key[i])) {
-           alp[j-1] = key[i]; 
+           alp[j-1] = toupper(key[i]); 
            j++;
         }
     }
@@ -29,6 +29,18 @@ int main ()
 
 	// write code below to fill up the rest of array alp with
 	// other characters in the alphabet in reverse order
+    for (i=0; i < 26; i++){
+        if(!found(alp, j, 'A' + i)) {
+            alp[j-1] = 'A' + i;
+            j++;
+        } 
+        /*
+        else if(!found(alp, j, 'a' + i)) {
+            alp[j-1] = 'a' + i;
+            j++;
+        }
+        */
+    }
 	
 
 	// print characters in array alp
