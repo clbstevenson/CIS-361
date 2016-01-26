@@ -27,8 +27,6 @@ int main ()
         }
     }
 
-    //printf("Now adding the reverse alphabet...\n");
-
 	// write code below to fill up the rest of array alp with
 	// other characters in the alphabet in reverse order
     for (i=0; i < 26; i++){
