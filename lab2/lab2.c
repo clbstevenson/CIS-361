@@ -20,14 +20,14 @@ int main ()
 	// write code below to store the key in array alp 
 	// after removing duplicate letters
     for (i=0, j=1; i <= size; i++) {
-        printf("i = %d,  j = %d,  key[i] = %c\n", i, j, key[i]);
+        //printf("i = %d,  j = %d,  key[i] = %c\n", i, j, key[i]);
         if(!found(alp, j, toupper(key[i])) && isalnum(key[i])) {
            alp[j-1] = toupper(key[i]); 
            j++;
         }
     }
 
-    printf("Now adding the reverse alphabet...\n");
+    //printf("Now adding the reverse alphabet...\n");
 
 	// write code below to fill up the rest of array alp with
 	// other characters in the alphabet in reverse order
