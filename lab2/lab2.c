@@ -31,8 +31,8 @@ int main ()
 	// write code below to fill up the rest of array alp with
 	// other characters in the alphabet in reverse order
     for (i=0; i < 26; i++){
-        if(!found(alp, j, 'A' + i)) {
-            alp[j-1] = 'A' + i;
+        if(!found(alp, j, 'Z' - i)) {
+            alp[j-1] = 'Z' - i;
             j++;
         } 
     }
