@@ -35,12 +35,6 @@ int main ()
             alp[j-1] = 'A' + i;
             j++;
         } 
-        /*
-        else if(!found(alp, j, 'a' + i)) {
-            alp[j-1] = 'a' + i;
-            j++;
-        }
-        */
     }
 	
 
