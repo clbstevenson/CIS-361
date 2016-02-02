@@ -6,7 +6,7 @@
 
 int main ()
 {
-	const int MaxSize = 25000;
+	const int MaxSize = 100000;
 	int i, j, temp;
 
 
@@ -43,8 +43,10 @@ int main ()
     clock_t d_total_begin = clock();
     clock_t d_init_begin = clock();
     int * dynamicArray;
+    int * dynamicStart;
     dynamicArray = (int*) malloc(MaxSize * sizeof(int));
 
+    dynamicStart = dynamicArray;
     if(dynamicArray == NULL) {
         //ran out of memory
         exit(1);
@@ -52,7 +54,9 @@ int main ()
 
     //intialize the dynamic array
 	for (i=0; i<MaxSize; i++)		// initialize the array with a
-        *(dynamicArray+i) = MaxSize - i; // descending sequence of values
+        *(dynamicArray++) = MaxSize - i; // descending sequence of values
+
+    dynamicArray = dynamicStart;
     clock_t d_init_end = clock();
 
     //start time for sorting dynamic array
