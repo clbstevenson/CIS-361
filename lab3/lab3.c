@@ -6,7 +6,9 @@
 
 int main ()
 {
-	const int MaxSize = 25000;
+    //apparently I had an old version, so updated this from 25k to 100k
+    const int MaxSize = 100000;
+	//const int MaxSize = 25000;
 	int i, j, temp;
 
 
@@ -15,12 +17,10 @@ int main ()
 
     //start time for initializing static array
     clock_t s_total_begin = clock();
-    clock_t s_init_begin = clock();
 	int staticArray[MaxSize];		// declare an array 
 
 	for (i=0; i<MaxSize; i++)		// initialize the array with a
 		staticArray[i] = MaxSize-i;	// descending sequence of values
-    clock_t s_init_end = clock();
 
     //start time for sorting static array
     clock_t s_begin = clock();
@@ -41,7 +41,6 @@ int main ()
 
     //start time for initializing dynamic array
     clock_t d_total_begin = clock();
-    clock_t d_init_begin = clock();
     int * dynamicArray;
     dynamicArray = (int*) malloc(MaxSize * sizeof(int));
 
@@ -53,7 +52,6 @@ int main ()
     //intialize the dynamic array
 	for (i=0; i<MaxSize; i++)		// initialize the array with a
         *(dynamicArray+i) = MaxSize - i; // descending sequence of values
-    clock_t d_init_end = clock();
 
     //start time for sorting dynamic array
     clock_t d_begin = clock();
@@ -76,10 +74,6 @@ int main ()
 
 
 	// Display the amount of time used for each part above
-    printf("Static: Initialize Time used: %lf%s\n", 
-            (double)(s_init_end - s_init_begin) / CLOCKS_PER_SEC, ", Seconds");
-    printf("Dynamic: Iniitialize Time used: %lf%s\n", 
-            (double)(d_init_end - d_init_begin) / CLOCKS_PER_SEC, ", Seconds");
     printf("Static: Sorting Time used: %lf%s\n", 
             (double)(s_end - s_begin) / CLOCKS_PER_SEC, ", Seconds");
     printf("Dynamic: Sorting Time used: %lf%s\n", 
