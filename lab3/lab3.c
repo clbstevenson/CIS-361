@@ -78,10 +78,12 @@ int main ()
             (double)(s_end - s_begin) / CLOCKS_PER_SEC, ", Seconds");
     printf("Dynamic: Sorting Time used: %lf%s\n", 
             (double)(d_end - d_begin) / CLOCKS_PER_SEC, ", Seconds");
+    /*
     printf("Static: Total Time used: %lf%s\n", 
             (double)(s_total_end - s_total_begin) / CLOCKS_PER_SEC, ", Seconds");
     printf("Dynamic: Total Time used: %lf%s\n", 
             (double)(d_total_end - d_total_begin) / CLOCKS_PER_SEC, ", Seconds");
+            */
 
 	return 0;
 }
