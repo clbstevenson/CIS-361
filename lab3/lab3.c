@@ -36,13 +36,17 @@ int main ()
     //end time for sorting static array
     clock_t s_end = clock();
     clock_t s_total_end = clock();
+    printf("Static: Sorting Time used: %lf%s\n", 
+            (double)(s_end - s_begin) / CLOCKS_PER_SEC, ", Seconds");
 
 	// Part two: processing a dynamically allocated array
 
     //start time for initializing dynamic array
     clock_t d_total_begin = clock();
     int * dynamicArray;
+    int * dynamicStart;
     dynamicArray = (int*) malloc(MaxSize * sizeof(int));
+    dynamicStart = dynamicArray;
 
     if(dynamicArray == NULL) {
         //ran out of memory
@@ -50,13 +54,37 @@ int main ()
     }
 
     //intialize the dynamic array
-	for (i=0; i<MaxSize; i++)		// initialize the array with a
-        *(dynamicArray+i) = MaxSize - i; // descending sequence of values
+	for (i=0; i<MaxSize; i++){		// initialize the array with a
+        *(dynamicArray++) = MaxSize - i; // descending sequence of values
+        //dynamicArray+=i;
+    }
+    printf(">>> After dynamic creation\n");
 
     //start time for sorting dynamic array
     clock_t d_begin = clock();
     //bubble sort the dynamic array
+    //dynamicArray = dynamicArray + i;
+    //
+
+    while(dynamicArray > dynamicStart) {
+        if(*(dynamicArray -1)  > *(dynamicArray) ) {
+            temp = *(dynamicArray -1);
+            *(dynamicArray -1) = *(dynamicArray);
+            *(dynamicArray) = temp;
+        }
+        dynamicArray--;
+    }
+    /*
     for(i=0; i < MaxSize-1; i++) {
+        //for(dynamicArray=MaxSize-1;dynamicArray>i; dynamicArray--) {
+        if(*(dynamicArray -1) > *(dynamicArray) ) {
+            temp = *(dynamicArray -1);
+            *(dynamicArray -1) = *(dynamicArray);
+            *(dynamicArray) = temp;
+        }
+        //}
+        
+         Previous version of dynamic bubble sort -> it was slow! 
         for(j=MaxSize-1; j>i; j--) {
             if(*(dynamicArray+(j-1)) > *(dynamicArray+j)) {
                 temp = *(dynamicArray+(j-1));
@@ -64,7 +92,8 @@ int main ()
                 *(dynamicArray+j) = temp;
             }
         }
-    }
+        }
+        */
     //end time for sorting dynamic array
     clock_t d_end = clock();
     clock_t d_total_end = clock();
