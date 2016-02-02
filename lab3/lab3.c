@@ -7,7 +7,7 @@
 int main ()
 {
     //apparently I had an old version, so updated this from 25k to 100k
-    const int MaxSize = 100000;
+    const int MaxSize = 1000000;
 	//const int MaxSize = 25000;
 	int i, j, temp;
 
@@ -24,6 +24,7 @@ int main ()
 
     //start time for sorting static array
     clock_t s_begin = clock();
+    /*
 	for (i=0; i<MaxSize-1; i++)		// bubble sort data in the array
 		for (j=MaxSize-1; j>i; j--)
 			if (staticArray[j-1] > staticArray[j])
@@ -33,6 +34,7 @@ int main ()
 				staticArray[j] = temp;
 			}
 
+    */
     //end time for sorting static array
     clock_t s_end = clock();
     clock_t s_total_end = clock();
@@ -45,6 +47,7 @@ int main ()
     clock_t d_total_begin = clock();
     int * dynamicArray;
     int * dynamicStart;
+    int * dynamicEnd;
     dynamicArray = (int*) malloc(MaxSize * sizeof(int));
     dynamicStart = dynamicArray;
 
@@ -58,6 +61,7 @@ int main ()
         *(dynamicArray++) = MaxSize - i; // descending sequence of values
         //dynamicArray+=i;
     }
+    dynamicEnd = dynamicArray;
     printf(">>> After dynamic creation\n");
 
     //start time for sorting dynamic array
@@ -66,14 +70,30 @@ int main ()
     //dynamicArray = dynamicArray + i;
     //
 
-    while(dynamicArray > dynamicStart) {
-        if(*(dynamicArray -1)  > *(dynamicArray) ) {
-            temp = *(dynamicArray -1);
-            *(dynamicArray -1) = *(dynamicArray);
-            *(dynamicArray) = temp;
+    printf("start =%d\n", *(dynamicStart));
+    printf("end =%d\n", *(dynamicArray));
+    printf("%d\n", *(dynamicArray));
+    printf("-1 %d\n", *(dynamicArray-1));
+    for(i=0; i < MaxSize-1; i++) {
+        while(dynamicArray > dynamicStart) {
+            //printf("[%d, %d]\n", *(dynamicArray -1), *(dynamicArray));
+            if(*(dynamicArray -1)  > *(dynamicArray) ) {
+                temp = *(dynamicArray -1);
+                *(dynamicArray -1) = *(dynamicArray);
+                *(dynamicArray) = temp;
+            }
+            dynamicArray--;
         }
-        dynamicArray--;
+        printf("pre %d\n", *(dynamicArray));
+        printf("pre start %d\n", *(dynamicArray));
+        dynamicStart = dynamicArray +1;
+        dynamicArray = dynamicEnd;
+        printf("post %d\n", *(dynamicArray));
+        printf("post start %d\n", *(dynamicArray));
+        printf("post end %d\n", *(dynamicEnd));
     }
+    printf("new %d\n", *(dynamicArray));
+    printf("new +1 %d\n", *(dynamicArray+1));
     /*
     for(i=0; i < MaxSize-1; i++) {
         //for(dynamicArray=MaxSize-1;dynamicArray>i; dynamicArray--) {
@@ -98,6 +118,11 @@ int main ()
     clock_t d_end = clock();
     clock_t d_total_end = clock();
 
+    int index = 0;
+    while(index < 100) {
+        //printf("%d = %d\n", index, *(dynamicArray++));
+    }
+
     //remember to free the dynamic array
     free(dynamicArray);
 
@@ -107,12 +132,10 @@ int main ()
             (double)(s_end - s_begin) / CLOCKS_PER_SEC, ", Seconds");
     printf("Dynamic: Sorting Time used: %lf%s\n", 
             (double)(d_end - d_begin) / CLOCKS_PER_SEC, ", Seconds");
-    /*
     printf("Static: Total Time used: %lf%s\n", 
             (double)(s_total_end - s_total_begin) / CLOCKS_PER_SEC, ", Seconds");
     printf("Dynamic: Total Time used: %lf%s\n", 
             (double)(d_total_end - d_total_begin) / CLOCKS_PER_SEC, ", Seconds");
-            */
 
 	return 0;
 }
