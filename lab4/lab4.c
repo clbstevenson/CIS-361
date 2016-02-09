@@ -10,7 +10,6 @@ int main()
 {
     char line[] = "is textbook was bought from that bookstore";  
     //char line[] = "aaaaaa";
-    //char line[] = "racecar fice race";
 	char *p1, *p2;
 
 	//set p1 to the beginning of string line;
