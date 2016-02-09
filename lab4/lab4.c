@@ -44,10 +44,10 @@ done:	printf ("the first substring: %s\n", strnsub(p1, LEN));
 char* strnsub (char *p, int n)
 {
 	// write function definition here
-    char* newp;
-    while(p != p+n) {
+    char* newp = p;
+    while(newp != p+n) {
         *newp = *p;
-        p++;
+        newp++;
     }
 
 }
