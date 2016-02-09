@@ -8,8 +8,8 @@ char* strnsub (char *p, int n);
 
 int main()
 {
-	//char line[] = "His textbook was bought from that bookstore";  
-    char line[] = "aaaaaa";
+    char line[] = "His textbook was bought from that bookstore";  
+    //char line[] = "aaaaaa";
     //char line[] = "racecar fice race";
 	char *p1, *p2;
 
@@ -18,14 +18,12 @@ int main()
 	while ( *p1 != EOF ) //more to check with p1 ) 	
 	{
 		//set p2 to the position immediately after p1
-        //p2 = p1+LEN;
         p2 = p1+1;
 		
 		while ( *p2 != EOF) //more to check with p2 )	
 		{
 			//if a match is found		
             int x = strncmp(p1, p2, LEN);
-            //if(strncmp(p1, p2, LEN)) 
             if(x == 0)
 				goto done;	
 				
@@ -49,7 +47,6 @@ done:	printf ("the first substring: %s\n", strnsub(p1, LEN));
 char* strnsub (char *p, int n)
 {
 	// write function definition here
-    //char* return_p = (char*) calloc(n, sizeof(char));
 
     char newp[n+1];
     int id = 0;
@@ -57,45 +54,9 @@ char* strnsub (char *p, int n)
         newp[id] = *(p+id);
         id++;
     }
+    //don't forget the (null) Terminator
     newp[id] = '\0';
     p = newp;
     
     return p;
-
-    /*
-    char* newp2 = p;
-
-    newp2+=n;
-    *newp2 = '\0';
-    newp2-=n;
-    return newp2;
-    */
-
-    //while(newp != p+n) {
-    //    //*return_p = *newp;
-    //    newp++;
-    //    //return_p++;
-    //}
-
-    //return return_p;
-
-
-    /*
-    char* new_arr;
-    int id = 0;
-    while(id < n) {
-        *(new_arr+id) = *(p+id);
-        id++;
-    }
-
-    return new_arr;
-
-
-    while(newp != p+n) {
-        *return_p = *newp;
-        newp++;
-        return_p++;
-    }
-    */
-
 }
