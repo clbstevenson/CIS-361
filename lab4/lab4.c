@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #define LEN 4
@@ -16,14 +17,14 @@ int main()
 	while ( *p1 != EOF ) //more to check with p1 ) 	
 	{
 		//set p2 to the position immediately after p1
-        p2 = p1+1;
+        p2 = p1+LEN;
 		
 		while ( *p2 != EOF) //more to check with p2 )	
 		{
 			//if a match is found		
             int x = strncmp(p1, p2, LEN);
             //if(strncmp(p1, p2, LEN)) 
-            if(x)
+            if(x == 0)
 				goto done;	
 				
 			//advance p2 to the next position
@@ -47,9 +48,40 @@ char* strnsub (char *p, int n)
 {
 	// write function definition here
     char* newp = p;
-    while(newp != p+n) {
-        *newp = *p;
-        newp++;
+    //char* return_p = (char*) calloc(n, sizeof(char));
+    char* newp2 = newp;
+
+    newp2+=n;
+    *newp2 = '\0';
+    newp2-=n;
+
+
+    return newp2;
+    //while(newp != p+n) {
+    //    //*return_p = *newp;
+    //    newp++;
+    //    //return_p++;
+    //}
+
+    //return return_p;
+
+
+    /*
+    char* new_arr;
+    int id = 0;
+    while(id < n) {
+        *(new_arr+id) = *(p+id);
+        id++;
     }
+
+    return new_arr;
+
+
+    while(newp != p+n) {
+        *return_p = *newp;
+        newp++;
+        return_p++;
+    }
+    */
 
 }
