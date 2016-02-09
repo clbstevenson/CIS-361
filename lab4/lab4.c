@@ -21,7 +21,9 @@ int main()
 		while ( *p2 != EOF) //more to check with p2 )	
 		{
 			//if a match is found		
-            if(strncmp(p1, p2, LEN)) 
+            int x = strncmp(p1, p2, LEN);
+            //if(strncmp(p1, p2, LEN)) 
+            if(x)
 				goto done;	
 				
 			//advance p2 to the next position
