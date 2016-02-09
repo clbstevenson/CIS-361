@@ -8,16 +8,18 @@ char* strnsub (char *p, int n);
 
 int main()
 {
-	char line[] = "His textbook was bought from that bookstore";  
+	//char line[] = "His textbook was bought from that bookstore";  
+    char line[] = "aaaaaa";
+    //char line[] = "racecar fice race";
 	char *p1, *p2;
 
 	//set p1 to the beginning of string line;
     p1 = line;
-	
 	while ( *p1 != EOF ) //more to check with p1 ) 	
 	{
 		//set p2 to the position immediately after p1
-        p2 = p1+LEN;
+        //p2 = p1+LEN;
+        p2 = p1+1;
 		
 		while ( *p2 != EOF) //more to check with p2 )	
 		{
@@ -47,16 +49,28 @@ done:	printf ("the first substring: %s\n", strnsub(p1, LEN));
 char* strnsub (char *p, int n)
 {
 	// write function definition here
-    char* newp = p;
     //char* return_p = (char*) calloc(n, sizeof(char));
-    char* newp2 = newp;
+
+    char newp[n+1];
+    int id = 0;
+    while(id < n) {
+        newp[id] = *(p+id);
+        id++;
+    }
+    newp[id] = '\0';
+    p = newp;
+    
+    return p;
+
+    /*
+    char* newp2 = p;
 
     newp2+=n;
     *newp2 = '\0';
     newp2-=n;
-
-
     return newp2;
+    */
+
     //while(newp != p+n) {
     //    //*return_p = *newp;
     //    newp++;
