@@ -2,25 +2,25 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define LEN 4
+#define LEN 1
 
 char* strnsub (char *p, int n);
 
 int main()
 {
-    char line[] = "His textbook was bought from that bookstore";  
+    char line[] = "is textbook was bought from that bookstore";  
     //char line[] = "aaaaaa";
     //char line[] = "racecar fice race";
 	char *p1, *p2;
 
 	//set p1 to the beginning of string line;
     p1 = line;
-	while ( *p1 != EOF ) //more to check with p1 ) 	
+	while ( *p1 != '\0' ) //more to check with p1 ) 	
 	{
 		//set p2 to the position immediately after p1
         p2 = p1+1;
 		
-		while ( *p2 != EOF) //more to check with p2 )	
+		while ( *(p2+LEN) != '\0') //more to check with p2 )	
 		{
 			//if a match is found		
             int x = strncmp(p1, p2, LEN);
