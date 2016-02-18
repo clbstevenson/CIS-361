@@ -84,17 +84,15 @@ int findKey ( float given[], float found[] ) {
         //while(given[id] != -1) {
         while(given[id] >= 0.0 && given[id] <= 1) {
         //while(id < (sizeof(given) / sizeof(float))) {
-            printf("\tgiven[%d]=%f :?: found[%d]=%f\n", id,
-                    given[(id+key)%NUM], id, found[id]);
+            //printf("\tgiven[%d]=%f :?: found[%d]=%f\n", id,
+            //        given[(id+key)%NUM], id, found[id]);
             float diff = given[(id+key)%NUM] - found[id];  
             //diff = pow(diff, 2.0);
             diff = diff * diff;
             sum += diff;
             id++;
         }
-        printf("Sum: %f\nBestSum: %f", sum, bestSum);
         if(key == 0)  {
-            printf("key is 0\n");
             bestSum = sum + 1;
         }
         if(sum < bestSum){ 
@@ -103,6 +101,7 @@ int findKey ( float given[], float found[] ) {
             bestSum = sum;
             bestKey = key;
         }
+        printf("Sum: %f\nBestSum: %f\n", sum, bestSum);
 
         key++;
     }
@@ -113,6 +112,10 @@ int findKey ( float given[], float found[] ) {
 // Decrypt the encoded text in the input file using the key and 
 // display the decoded text
 void decrypt ( int key,  char fname[]  ) {
+
+    int id = 0;
+     
+
 
 }
 
