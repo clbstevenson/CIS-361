@@ -1,3 +1,4 @@
+#include <math.h>
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -47,10 +48,10 @@ void calcFreq ( float found[],  char fname[] ) {
     while(id < 26) {
         found[id] = found[id] / total;
         sum += found[id];
-        printf("%c = %f\n", 'A' + id, found[id]);
+        //printf("%c = %f\n", 'A' + id, found[id]);
         id++;
     }
-    printf("sum = %f\n", sum);
+    //printf("sum = %f\n", sum);
     
 }
  
@@ -71,6 +72,42 @@ char rotate ( char ch, int num ) {
 // the frequencies you observed and the frequencies given. Return the key.
 int findKey ( float given[], float found[] ) {
 
+    int id;
+    int key = 0;
+    int bestKey = 0;
+    float sum;
+    float bestSum = -1;
+    while(key < NUM) {
+        printf("key %d:\n", key);
+        sum = 0.0;
+        id = 0;
+        //while(given[id] != -1) {
+        while(given[id] >= 0.0 && given[id] <= 1) {
+        //while(id < (sizeof(given) / sizeof(float))) {
+            printf("\tgiven[%d]=%f :?: found[%d]=%f\n", id,
+                    given[(id+key)%NUM], id, found[id]);
+            float diff = given[(id+key)%NUM] - found[id];  
+            //diff = pow(diff, 2.0);
+            diff = diff * diff;
+            sum += diff;
+            id++;
+        }
+        printf("Sum: %f\nBestSum: %f", sum, bestSum);
+        if(key == 0)  {
+            printf("key is 0\n");
+            bestSum = sum + 1;
+        }
+        if(sum < bestSum){ 
+            //update bestSum and bestKey
+            printf("Update\n");
+            bestSum = sum;
+            bestKey = key;
+        }
+
+        key++;
+    }
+    return bestKey;
+
 }
  
 // Decrypt the encoded text in the input file using the key and 
@@ -90,12 +127,17 @@ int main() {
     float* calcfreqs;
     calcfreqs = (float*) malloc(NUM*(sizeof(float)));
     //calcFreq(calcfreqs, "test1");
-    calcFreq(calcfreqs, "test2");
+    calcFreq(calcfreqs, "test2.out");
     printf("A: %f\n", (*calcfreqs));
     
     int delta = 3;
     char x = 'x';
     char nx = rotate(x, delta);
     printf("%c + %d = %c\n", x, delta, nx);
+
+    int key = findKey(frequencies, calcfreqs); 
+    printf("Found key: %d\n", key);
+    
+
     return 0;
 }
