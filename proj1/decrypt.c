@@ -112,10 +112,27 @@ int findKey ( float given[], float found[] ) {
 // Decrypt the encoded text in the input file using the key and 
 // display the decoded text
 void decrypt ( int key,  char fname[]  ) {
+    FILE *fp;
+    char c;
 
+    int total = 0;
     int id = 0;
-     
-
+    fp = fopen(fname, "r");
+    while((c = getc(fp)) != EOF) {
+        //printf("%c ", c);
+        //found[c-'A'] = 22;
+        if(!isalpha(c)) {
+            printf("%c", c);
+            continue;
+        }
+        if(islower(c))
+            id = c-'a';
+        else if(isupper(c))
+            id = c-'A';
+        printf("%c ", rotate(c, key));
+        //printf("new found[%d] = %f\n", id, found[id]); 
+        total++;
+    }
 
 }
 
@@ -130,7 +147,7 @@ int main() {
     float* calcfreqs;
     calcfreqs = (float*) malloc(NUM*(sizeof(float)));
     //calcFreq(calcfreqs, "test1");
-    calcFreq(calcfreqs, "test2.out");
+    calcFreq(calcfreqs, "test_page.out");
     printf("A: %f\n", (*calcfreqs));
     
     int delta = 3;
@@ -141,6 +158,7 @@ int main() {
     int key = findKey(frequencies, calcfreqs); 
     printf("Found key: %d\n", key);
     
+    decrypt(key, "test_page.out");
 
     return 0;
 }
