@@ -5,6 +5,9 @@
 
 #define NUM 26
 
+char inputfile[50];
+char outputfile[50];
+
 // Load array 'given' with letter frequences for English from LetFreq.txt 
 void readFreq(float given[], char fname[]) {
     FILE *fp;
@@ -30,7 +33,7 @@ void calcFreq ( float found[],  char fname[] ) {
     int id = 0;
     fp = fopen(fname, "r");
     while((c = getc(fp)) != EOF) {
-        printf("%c ", c);
+        //printf("%c ", c);
         //found[c-'A'] = 22;
         if(!isalpha(c))
             continue;
@@ -42,7 +45,7 @@ void calcFreq ( float found[],  char fname[] ) {
         //printf("new found[%d] = %f\n", id, found[id]); 
         total++;
     }
-    printf("\ntotal read: %d\n", total);
+    //printf("\ntotal read: %d\n", total);
     id = 0;
     float sum = 0;
     while(id < 26) {
@@ -79,7 +82,7 @@ int findKey ( float given[], float found[] ) {
     float sum;
     float bestSum = -1;
     while(key < NUM) {
-        printf("key %d:\n", key);
+        //printf("key %d:\n", key);
         sum = 0.0;
         id = 0;
         //while(given[id] != -1) {
@@ -98,11 +101,11 @@ int findKey ( float given[], float found[] ) {
         }
         if(sum < bestSum){ 
             //update bestSum and bestKey
-            printf("Update\n");
+            //printf("Update\n");
             bestSum = sum;
             bestKey = key;
         }
-        printf("Sum: %f\nBestSum: %f\n", sum, bestSum);
+        //printf("Sum: %f\nBestSum: %f\n", sum, bestSum);
 
         key++;
     }
@@ -120,8 +123,8 @@ void decrypt ( int key,  char fname[]  ) {
     int total = 0;
     int id = 0;
     fp = fopen(fname, "r");
-    fw = fopen("fname.bak", "w"); 
-    printf("Writing decrypted text to: fname.bak\n");
+    fw = fopen(outputfile, "w"); 
+    printf("Writing decrypted text to: %s\n", outputfile);
     while((c = getc(fp)) != EOF) {
         //printf("%c ", c);
         //found[c-'A'] = 22;
@@ -144,13 +147,21 @@ void decrypt ( int key,  char fname[]  ) {
 
 }
 
-int main() {
+int main(int argc, char* argv[] ) {
+
+    if(argc < 3) {
+        printf("Missing parameters: decrypt input output\n");
+        exit(1);
+    }
 
     float* frequencies;
     frequencies = (float*) malloc(NUM *(sizeof(float)));
     readFreq(frequencies, "LetFreq.txt"); 
     printf("\nA: %f\n", (*frequencies+0));
 
+
+    strcpy(inputfile, argv[1]);
+    strcpy(outputfile, argv[2]);
 
     float* calcfreqs;
     calcfreqs = (float*) malloc(NUM*(sizeof(float)));

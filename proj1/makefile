@@ -8,6 +8,3 @@ test1:
 test2:
 	./cipher 2 5 data.out data.bak
 
-check:check1
-check1:
-	diff test_page fname.bak
