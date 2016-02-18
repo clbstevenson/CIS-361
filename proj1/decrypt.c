@@ -2,6 +2,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define NUM 26
 
@@ -166,7 +167,7 @@ int main(int argc, char* argv[] ) {
     float* calcfreqs;
     calcfreqs = (float*) malloc(NUM*(sizeof(float)));
     //calcFreq(calcfreqs, "test1");
-    calcFreq(calcfreqs, "test_page.out");
+    calcFreq(calcfreqs, inputfile);
     printf("A: %f\n", (*calcfreqs));
     
     int delta = 3;
@@ -177,7 +178,7 @@ int main(int argc, char* argv[] ) {
     int key = findKey(frequencies, calcfreqs); 
     printf("Found key: %d\n", key);
     
-    decrypt(key, "test_page.out");
+    decrypt(key, inputfile);
 
     return 0;
 }
