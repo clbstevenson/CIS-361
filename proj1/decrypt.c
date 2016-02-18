@@ -57,7 +57,12 @@ void calcFreq ( float found[],  char fname[] ) {
 // Rotate the character in parameter ch down the alphabet for the number of 
 // positions as given in parameter num and return the resulting character.
 char rotate ( char ch, int num ) {
-
+    if(isupper(ch))
+        return ('A' + ((ch+num)-'A')%NUM);
+    else if(islower(ch))
+        return ('a' + ((ch+num)-'a')%NUM);
+    else 
+        return ch + 1;
 }
 
 // Compare the data in array found with frequency data in given[], looking
@@ -86,6 +91,11 @@ int main() {
     calcfreqs = (float*) malloc(NUM*(sizeof(float)));
     //calcFreq(calcfreqs, "test1");
     calcFreq(calcfreqs, "test2");
+    printf("A: %f\n", (*calcfreqs));
     
+    int delta = 3;
+    char x = 'x';
+    char nx = rotate(x, delta);
+    printf("%c + %d = %c\n", x, delta, nx);
     return 0;
 }
