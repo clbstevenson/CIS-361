@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
 	if (argc != 5)
 	{
 		printf ("Usage: cipher option key infile, outfile\n");
-		printf ("Option 1 for encryption and 2 for decryption");
+		printf ("Option 1 for encryption and 2 for decryption\n");
 		exit(1);
 	}
 	
