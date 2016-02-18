@@ -51,6 +51,7 @@ void calcFreq ( float found[],  char fname[] ) {
         //printf("%c = %f\n", 'A' + id, found[id]);
         id++;
     }
+    fclose(fp);
     //printf("sum = %f\n", sum);
     
 }
@@ -113,26 +114,33 @@ int findKey ( float given[], float found[] ) {
 // display the decoded text
 void decrypt ( int key,  char fname[]  ) {
     FILE *fp;
+    FILE *fw;
     char c;
 
     int total = 0;
     int id = 0;
     fp = fopen(fname, "r");
+    fw = fopen("fname.bak", "w"); 
+    printf("Writing decrypted text to: fname.bak\n");
     while((c = getc(fp)) != EOF) {
         //printf("%c ", c);
         //found[c-'A'] = 22;
         if(!isalpha(c)) {
-            printf("%c", c);
+            //printf("%c", c);
+            fputc(c, fw);
             continue;
         }
         if(islower(c))
             id = c-'a';
         else if(isupper(c))
             id = c-'A';
-        printf("%c ", rotate(c, key));
+        //printf("%c ", rotate(c, key));
+        fputc(rotate(c,key), fw);
         //printf("new found[%d] = %f\n", id, found[id]); 
         total++;
     }
+    fclose(fp);
+    fclose(fw);
 
 }
 
