@@ -26,22 +26,31 @@ void calcFreq ( float found[],  char fname[] ) {
     char c;
 
     int total = 0;
+    int id = 0;
     fp = fopen(fname, "r");
-    while((c = fgetc(fp)) != EOF) {
+    while((c = getc(fp)) != EOF) {
         printf("%c ", c);
         //found[c-'A'] = 22;
-        //if(islpha(c))
+        if(!isalpha(c))
             continue;
-        found[c-'A'] = found[c-'A'] + 1;
+        if(islower(c))
+            id = c-'a';
+        else if(isupper(c))
+            id = c-'A';
+        found[id] = found[id] + 1;
+        //printf("new found[%d] = %f\n", id, found[id]); 
         total++;
     }
-    printf("\nread through\n");
-    int id = 0;
+    printf("\ntotal read: %d\n", total);
+    id = 0;
+    float sum = 0;
     while(id < 26) {
         found[id] = found[id] / total;
+        sum += found[id];
         printf("%c = %f\n", 'A' + id, found[id]);
         id++;
     }
+    printf("sum = %f\n", sum);
     
 }
  
@@ -75,7 +84,8 @@ int main() {
 
     float* calcfreqs;
     calcfreqs = (float*) malloc(NUM*(sizeof(float)));
-    calcFreq(calcfreqs, "test1");
+    //calcFreq(calcfreqs, "test1");
+    calcFreq(calcfreqs, "test2");
     
     return 0;
 }
