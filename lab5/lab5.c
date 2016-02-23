@@ -61,6 +61,9 @@ void getInfo (FILE * f, Mark * p)
     //File f is already opened in main()
     //while(1) {
     int res = fscanf(f, "%d %d", &(p->x), &(p->y));
+    if(res!=2)
+        printf("Does not match input format\n");
+
     /*
     if(res == 2)
         printf("IN: (%d, %d)", p->x, p->y);
@@ -77,7 +80,7 @@ void printInfo (FILE * f, Mark item)
 {
 	// display each mark in format of (x, y) 
 	// and five marks per line 
-    fprintf(f, "(%d, %d)  ", item.x, item.y);
+    fprintf(f, "(%02d, %02d) ", item.x, item.y);
     //fprintf(f, "*");
 
 }
@@ -86,10 +89,22 @@ int compare (const void * a, const void * b){
 
     Mark * ma = (Mark *) a;
     Mark * mb = (Mark *) b;
+    if(ma->y == mb->y) {
+        printf("(ma.x > mb.x): %d > %d: %d\n",ma->x, mb->x,
+            (ma->x > mb->x));
+        return (ma->x > mb->x);
+    }else {
+        printf("(ma.y > mb.y): %d > %d: %d\n",ma->y, mb->y,
+            (ma->y < mb->y));
+        return (ma->y < mb->y);
+    }
+
+    /* previous version
     if(ma->x == mb->x)
         return (ma->y > mb->y);
     else
         return (ma->x < mb->x);
+        */
 }
 
 
