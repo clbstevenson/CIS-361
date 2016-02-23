@@ -35,10 +35,11 @@ int main()
 	{
 		getInfo (fin, &mark);
 		list[size++] = mark;
-        printf("\t (%d, %d)\n", mark.x, mark.y);
+        //printf("\t (%d, %d)\n", mark.x, mark.y);
 	}
 
 	// use qsort() to sort data in list
+    qsort(list, size, sizeof(Mark), compare);
 
 	for (i = 0; i < size; i++)
 	{
@@ -59,10 +60,12 @@ void getInfo (FILE * f, Mark * p)
     //File f is already opened in main()
     //while(1) {
     int res = fscanf(f, "%d %d", &(p->x), &(p->y));
+    /*
     if(res == 2)
         printf("IN: (%d, %d)", p->x, p->y);
     else 
         printf("No match.\n");
+    */
         
 
     //}
@@ -73,12 +76,18 @@ void printInfo (FILE * f, Mark item)
 {
 	// display each mark in format of (x, y) 
 	// and five marks per line 
+    fprintf(f, "(%d, %d)\n", item.x, item.y);
 
 }
 
 int compare (const void * a, const void * b){
-    return 0;
 
+    Mark * ma = (Mark *) a;
+    Mark * mb = (Mark *) b;
+    if(ma->x == mb->x)
+        return (ma->y > mb->y);
+    else
+        return (ma->x > mb->x);
 }
 
 
