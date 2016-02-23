@@ -89,7 +89,7 @@ int compare (const void * a, const void * b){
     if(ma->x == mb->x)
         return (ma->y > mb->y);
     else
-        return (ma->x > mb->x);
+        return (ma->x < mb->x);
 }
 
 
