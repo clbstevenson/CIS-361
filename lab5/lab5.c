@@ -35,6 +35,7 @@ int main()
 	{
 		getInfo (fin, &mark);
 		list[size++] = mark;
+        printf("\t (%d, %d)\n", mark.x, mark.y);
 	}
 
 	// use qsort() to sort data in list
@@ -56,18 +57,15 @@ int main()
 void getInfo (FILE * f, Mark * p)
 {
     //File f is already opened in main()
-    while(1) {
-        int res = fscanf(f, "%d %d", &(p->x), &(p->y));
-        if(res == 2)
-            printf("IN: (%d, %d)\n", p->x, p->y);
-        else if(res == EOF)
-            break;
-        else 
-            printf("No match.\n");
+    //while(1) {
+    int res = fscanf(f, "%d %d", &(p->x), &(p->y));
+    if(res == 2)
+        printf("IN: (%d, %d)", p->x, p->y);
+    else 
+        printf("No match.\n");
         
 
-    }
-    printf("EOF\n");
+    //}
 
 }
 
