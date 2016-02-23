@@ -47,6 +47,7 @@ int main()
 		if ( ++col % 5 == 0 )
 			printf("\n");
 	}
+    putchar('\n');
 
 	fclose (fin);
 
@@ -76,8 +77,8 @@ void printInfo (FILE * f, Mark item)
 {
 	// display each mark in format of (x, y) 
 	// and five marks per line 
-    //fprintf(f, "(%d, %d)\n", item.x, item.y);
-    fprintf(f, "*");
+    fprintf(f, "(%d, %d)  ", item.x, item.y);
+    //fprintf(f, "*");
 
 }
 
