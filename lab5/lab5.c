@@ -55,6 +55,19 @@ int main()
 
 void getInfo (FILE * f, Mark * p)
 {
+    //File f is already opened in main()
+    while(1) {
+        int res = fscanf(f, "%d %d", &(p->x), &(p->y));
+        if(res == 2)
+            printf("IN: (%d, %d)\n", p->x, p->y);
+        else if(res == EOF)
+            break;
+        else 
+            printf("No match.\n");
+        
+
+    }
+    printf("EOF\n");
 
 }
 
@@ -66,6 +79,7 @@ void printInfo (FILE * f, Mark item)
 }
 
 int compare (const void * a, const void * b){
+    return 0;
 
 }
 
