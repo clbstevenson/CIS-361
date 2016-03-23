@@ -80,7 +80,7 @@ void printInfo (FILE * f, Mark item)
 {
 	// display each mark in format of (x, y) 
 	// and five marks per line 
-    fprintf(f, "(%02d, %02d) ", item.x, item.y);
+    fprintf(f, "(%2d, %2d) ", item.x, item.y);
     //fprintf(f, "*");
 
 }
