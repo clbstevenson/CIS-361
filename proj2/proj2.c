@@ -2,11 +2,15 @@
 #include <stdlib.h>
 #include <math.h>
 #include "queue.h"
-//#include "stats.c"
+#include "stats.h"
 
 #define AVG_SERVICE 2.0
 #define TOTAL_TIME 480
 #define NUM_ENTRIES 5
+
+int num_cust = 0;
+int total_wait = 0;
+double avg_wait = 0.0;
 
 struct teller {
     int busy;
@@ -33,9 +37,9 @@ void initialize_tellers(teller * tellers, int size) {
     int id = 0;
     while(id < size) {
         (*(tellers + id)).busy = 0;
-        (*(tellers + id)).customer = NULL;
-        (*(tellers + id)).next_service_time = expdist(AVG_SERVICE);
-        (*(tellers + id)).exit_time = 0;
+        //(*(tellers + id)).customer = NULL;
+        //(*(tellers + id)).next_service_time = expdist(AVG_SERVICE);
+        //(*(tellers + id)).exit_time = 0;
         id++;
     }
 }
@@ -81,15 +85,22 @@ int main(int argc, char* argv[]) {
     printf("permin_arr[4] = %d\n", permin_arr[4]);
 
     //simulation(num_tellers);
+    //day_stats stats;
+    //stats.num_customers = 0;
+    //init_data(&stats);
     simulation(4);
     //print stats
+    avg_wait = 1.0 * total_wait / num_cust;
+    printf("Total Customers: %d\nTotal Wait: %d;\tAvg Wait: %d\n", 
+            num_cust, total_wait, avg_wait);
+    //print_info(&stats);
+    //reset(&stats);
     //simulation(5);
     //print stats
     //simulation(6);
     //print stats
     //simulation(7);
     //print stats
-
 
     return 0;
 }
@@ -125,13 +136,39 @@ void simulation(int numOfTellers) {
     int min = 0;
     //continue for the whole day
     while (min < TOTAL_TIME) {
+        //get new customers every minute
         int c = get_customers();
         printf("c:%d;\n", c);
         while(c > 0) {
-            data d = min + "" + c;
-            printf("enqueue \n");
-            enqueue(d, &line);
-            c --;
+            data new_cust;
+            new_cust.arrive= min;
+            enqueue(new_cust, &line);
+            num_cust ++;
+            c--;
+        }
+
+        int tid;
+        printf("min: %d\n", min);
+        for(tid = 0; tid < numOfTellers; tid++) {
+            //check if someone is waiting in line
+            if(line.cnt > 0) {
+                //check if they are busy
+                printf("checking tellers...\n");
+                if(!tellers2[tid].busy) {
+                    printf("found a non-busy teller!\n");
+                    tellers2[tid].busy = 1;
+                    data cust = dequeue(&line);
+                    tellers2[tid].customer = cust;
+                    cust.depart = min;
+                    printf("\tcust: arrived @ %d left line @ %d\n",
+                        cust.arrive, cust.depart);
+                    total_wait = total_wait + (cust.depart - cust.arrive);
+                    //avg_wait = total_wait / 2.0;
+                    break;
+                }else {
+                    printf("found a non-busy teller!\n");
+                }
+            }
         }
         printf("line size = %d\n", line.cnt);
 

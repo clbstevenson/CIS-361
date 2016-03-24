@@ -13,7 +13,7 @@ struct day_stats {
 };
 typedef  struct day_sats  day_stats;
 
-void initialize(day_stats *d);
+void init_data(day_stats *d);
 void reset(day_stats *d);
 void update(int n, double avg_w, int max_w, double avg_l, int max_l, 
     day_stats *d);

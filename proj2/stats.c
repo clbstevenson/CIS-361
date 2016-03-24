@@ -2,7 +2,7 @@
 
 #include "stats.h"
 
-void initialize(day_stats *d) {
+void init_data(day_stats *d) {
     
     d -> num_customers = 0;
     d -> avg_wait = 0.0;
@@ -12,7 +12,7 @@ void initialize(day_stats *d) {
 }
 
 void reset(day_stats *d) {
-    initialize(d);
+    init_data(d);
 }
 
 void update(int n, double avg_w, int max_w, double avg_l, int max_l,
