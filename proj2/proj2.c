@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-//#include <queue.h>
+#include "queue.c"
 //#include <stats.h>
 
 #define AVG_SERVICE 2.0
@@ -23,6 +23,11 @@ int main(int argc, char* argv[]) {
     printf("t:%f\n", t);
     // ..
 
+    queue testq;
+    initialize(&testq);
+    printf("testq: cnt=%d\n", testq.cnt);
+
+    return 0;
 }
 
 void simulation(int numOfTellers) {

@@ -38,7 +38,7 @@ void enqueue(data d, queue *q) {
 }
 
 data front(const queue *q) {
-    return (q -> front -> d);
+    return ((q -> front) -> d);
 }
 
 boolean empty(const queue *q) {
@@ -46,5 +46,5 @@ boolean empty(const queue *q) {
 }
 
 boolean full(const queue *q) {
-    return ((boolean (q -> cnt == FULL));
+    return ((boolean) (q -> cnt == FULL));
 }
