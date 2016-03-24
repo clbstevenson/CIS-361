@@ -9,7 +9,7 @@
 #define EMPTY   0
 #define FULL    10000
 
-typedef unsigned int        data;
+typedef unsigned char*      data; 
 typedef enum {false, true}  boolean;
 
 struct elem {           /* an elemnt in the queue */
