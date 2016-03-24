@@ -40,8 +40,7 @@ void update_line(int new_len) {
 }
 
 void print_info(day_stats *d) {
-    printf("Stats: %d customers\n\taverage wait: %f, max wait: %d\n
-            \taverage line length: %f, max line length: %d\n",
+    printf("Stats: %d customers\n\taverage wait: %f, max wait: %d\n\taverage line length: %f, max line length: %d\n",
             d -> num_customers, d -> avg_wait, d -> max_wait,
             d -> avg_len, d -> max_len);
 }
