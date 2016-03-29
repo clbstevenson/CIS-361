@@ -1,5 +1,8 @@
 #! /bin/bash
-while read file;
-do 
-    echo ${file}; 
+for i in *
+do
+    if test -f "$i"
+    then
+        echo "$i"
+    fi
 done

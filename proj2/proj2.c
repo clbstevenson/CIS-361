@@ -136,13 +136,30 @@ void simulation(int numOfTellers) {
     int min = 0;
     //continue for the whole day
     while (min < TOTAL_TIME) {
+        //service customers
+        int tel_id;
+        for(tel_id = 0; tel_id < numOftellers; tel_id++) {
+            
+        }
         //get new customers every minute
         int c = get_customers();
         printf("c:%d;\n", c);
         while(c > 0) {
             data new_cust;
-            new_cust.arrive= min;
-            enqueue(new_cust, &line);
+            new_cust.arrive = min;
+            int ct;
+            int in_line = 1;
+            for(ct = 0; ct < numOfTellers; ct++) {
+                //if a teller isn't busy
+                if(tellers2[ct] == 0) {
+                    tellers2[ct] == 1;
+                    new_cust.depart = min;
+                    in_line = 0;
+                }
+            }
+            //if the tellers were full, put them into line
+            if(in_line)
+                enqueue(new_cust, &line);
             num_cust ++;
             c--;
         }
