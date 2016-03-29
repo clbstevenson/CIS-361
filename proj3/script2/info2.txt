@@ -1,0 +1,19 @@
+2. Develop a pipeline (that is, a sequence of scripts and commands) to generate a KWIC (Key Word In Context) index from an input file. As shown below, an input file contains a number of lines and each line contains a number of words. Your pipeline reads lines from the input file, circularly shifts each line by repeatedly removing the first word and appending it at the end of that line, and then outputs a listing of all circular shifts of all lines in alphabetical order, excluding circular shifts that start with a word defined in file noise.dat, such as the, a, an, and, or, ... (for example, a circular shift, "and Filters Pipes", is not in the sample output below). An example is shown as follows.
+Sample Input in File sample.dat:
+Pipes and Filters
+Java Swing
+Software Requirements Analysis
+Sample Output in File sample.out:
+Analysis Software Requirements
+Filters Pipes and
+Java Swing
+Pipes and Filters
+Requirements Analysis Software
+Software Requirements Analysis
+Swing Java
+ 
+The number of lines in the input file sample.dat is 3
+The number of lines in the output file sample.out is 7
+Complete this task with a few scripts that can be run as a pipeline in the way as stated below:
+       shiftLines test.dat | filterNoiceWords noice.txt | createReport outfile.out
+In addition, exceptions include missing command-line arguments as well as a non-existing or unreadable input file, including test.dat and noise.txt. No other exceptions need to be considered. Both test.dat and noise.txt are available from the instructors website. Note that data file test.dat contains duplicate lines that should be removed.

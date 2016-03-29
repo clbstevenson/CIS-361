@@ -1,0 +1,9 @@
+1.  Create a Bash script as described below:
+Syntax: junk [options] targetFileList
+     where options include -l, -n, and --help
+
+Script junk is replacement for the rm command. Its argument targetFileList is a list of filenames. Rather than removing the target files, junk moves them into the subdirectory .junk in the user's home directory. If the .junk subdirectory does not exist, it is automatically created. Also if a file with the same name as the file to be moved already exists in subdirectory .junk, keep the newer version of that file in the subdirectory.   
+
+The -l option lists the current contents of the .junk directory, the -n option shows the number of files in the .junk directory and the amount of memory space they consume, and the --help option displays a brief description about this script as well as each of the options. Note that all options should be performed after the intended action is done if present. In addition, like a typical Linux command, any number of options (zero, one, two, or three) is allowed and ordering of these options is irrelevant.
+
+Exceptions: (1) No command-line arguments or options; (2) Files on targetFileList do not exist; (3) Directories included in targetFileList.

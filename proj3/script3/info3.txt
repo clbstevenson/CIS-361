@@ -1,0 +1,24 @@
+3. Blackboard allows a student to submit several files for a programming project (usually including source and data files) and also allows a professor to download all of those files from students in a class at once as a single zip file. However, the professor has to unzip a downloaded file, rename and reorganize files from each student, as well as build and run each program. Such a procedure is quite tedious and time consuming. Here, you are asked to develop a script to automate the entire process so the processor can focus on grading.   
+ 
+Given below is a short list of files from two students in format as they appear in a downloaded zip file. Blackboard has added a prefix to the original name of each file a student submitted, including project title, user name, and so on. And the fourth file for each student (the text file that does not have its own name except the prefix) was created by Blackboard to provide information about each submission as well as a message the student wrote along with the submitted files.
+ 
+Project 4_edwardsj_attempt_2013-03-08-10-16-08_cipher.c
+Project 4_edwardsj_attempt_2013-03-08-10-16-08_LetFreq.txt
+Project 4_edwardsj_attempt_2013-03-08-10-16-08_makefile
+Project 4_edwardsj_attempt_2013-03-08-10-16-08.txt 
+Project 4_harrisr_attempt_2013-03-02-15-56-34_cipher.c
+Project 4_harrisr_attempt_2013-03-02-15-56-34_LetFreq.txt
+Project 4_harrisr_attempt_2013-03-02-15-56-34_makefile
+Project 4_harrisr_attempt_2013-03-02-15-56-34.txt
+ Specifically, you need to take the following steps to achieve the goal:
+1)      Unzip a downloaded file into a data directory that is named by the user under the current working directory. You will use the downloaded file, cis361p4.zip, which can found from the instructors website, to test your script. For simplicity, cis361p4.zip contains files from only three students; but you must make sure that your script would work for such a zip file with files from any number of students. 
+2)      Create a sub-directory under the data directory for each student and name it by the students user name (that can be extracted from the added prefix of a filename); for example, creating two sub-directories edwardsj and harrisr according to the short list given above.
+3)      Place all of the files that a student submitted into his/her sub-directory and remove the added prefix from each filename. After this step, for example, the sub-directory edwardsj would have cipher.c, LetFreq.txt, makefile, and memo.txt. Note that the name of the file created by Blackboard is renamed as memo.txt.
+4)      Test run each students program; that is, building the program from a makefile and executing it against an input file. Only one copy of the makefile and the input file are needed and both reside in the current working directory. In this project, they are given (in the instructors website) and you will use them to test your script.
+5)      In addition, save the log of the screen output during the entire testing session (for all students in a class) into a file, named as report, in the current working directory.
+Here, the makefile allows the instructor to customize what needs to be done in order to build and test each submitted program. It varies from project to project. You may use the following two make commands in your script. 
+ 
+   make -f ../../makefile -C pathname_of_a_subdir_for_a_student
+   make test -f ../../makefile -C pathname_of_a_subdir_for_a_student
+Here, option -C makes it possible to change to the named sub-directory before reading the makefile and option -f specifies which makefile to use. As a result, the two make commands allow the script to test each students program (resides in a different sub-directory under the data directory) using the same makefile and data file from the current working directory.
+In this script, you can assume that the downloaded zip file and user input are valid; so no error checking is necessary.
