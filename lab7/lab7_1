@@ -1,4 +1,6 @@
+#! bin/bash
+
 currTime="date +%r"
 echo "Current time is $($currTime)"
 
-Current time is 10:31:54 PM
+# Current time is 10:31:54 PM
