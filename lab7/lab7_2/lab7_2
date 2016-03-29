@@ -1,0 +1,9 @@
+#!/bin/sh
+while read class proj;
+do 
+    echo ${class}; 
+    mkdir -p ${class}; 
+    cd ${class}; 
+    touch ${proj}; 
+    cd ..; 
+done < classes
