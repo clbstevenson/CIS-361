@@ -1,10 +1,10 @@
 #! /bin/bash
 #for i in *
-while read name
+while read file 
 do
     #echo "Your file is $name"
-    if test -f "$name"
+    if test -f "$file"
     then
-        echo "$name"
+        echo "$file"
     fi
 done
