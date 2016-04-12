@@ -1,0 +1,2 @@
+#! /bin/bash
+sed -n -e s/Fall\ /F/p -e s/Winter\ /W/p lab8b > lab8c

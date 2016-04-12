@@ -1,2 +1,2 @@
 #! /bin/bash
-gawk -F, '{printf "%s,%s,%s\n", $2, $1, $3}' lab8 | sort > lab8a
+sort -t',' -k2 lab8 > lab8a

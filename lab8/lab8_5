@@ -1,0 +1,8 @@
+#! /bin/bash
+#path=~/452/lab02_e.c
+path=$1
+#echo $path > filepath
+#sed 's/.*\///g' filepath
+echo $path
+echo "..."
+echo $path | xargs sed 's/.*\///g' 
