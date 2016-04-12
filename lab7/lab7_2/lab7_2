@@ -2,6 +2,8 @@
 while read class proj;
 do 
     echo ${class}; 
+    echo;
+    echo $class;
     mkdir -p ${class}; 
     cd ${class}; 
     touch ${proj}; 
