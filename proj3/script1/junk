@@ -13,4 +13,14 @@
 #   exists in .junk directory, keep the newer version of 
 #   that file in the subdirectory.
 
+#set $*
+echo $1; echo $2; echo $3
+if [ "$1" = "-l" ] || [ "$2" = "-l" ] || [ "$3" = "-l" ]
+    then
+    echo "long"
+    optl=1
+fi
+if test "$optl" = 1
+    then echo $optl
+fi
 
