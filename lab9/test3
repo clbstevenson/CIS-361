@@ -1,4 +1,5 @@
 #! /bin/tcsh
+# GOAL: take input from keyboard not cmd args. store in list. while loop
 # read arguments individually from the user
 echo -n "enter a few numbers: "
 set list = ($<)

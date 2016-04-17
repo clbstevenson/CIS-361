@@ -1,4 +1,5 @@
 #! /bin/tcsh
+# GOAL: read cmd args. calc the sum and avg. between 1-7 args only.
 # Check the number of arguments provided
 if ( $# == 0 || $#argv > 6) then
     echo "enter between 1 and 7 arguments"
