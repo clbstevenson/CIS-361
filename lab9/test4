@@ -1,0 +1,37 @@
+#! /bin/tcsh
+# GOAL: find and display the largest input number.
+# read arguments individually from the user
+echo -n "enter a few numbers: "
+set list = ($<)
+echo "Input is $list"
+# calc and print the average 
+set sum = 0
+set count = 1
+set avg = 0
+
+#start max value at the first index
+set max = $list[1]
+set maxc = $count
+
+while ( $count <= $#list )
+    echo "start count = $count"
+    @ sum = $sum + $list[$count]
+    echo "new sum = $sum"
+    # check if the current index value is larger than max
+    if ($list[$count] > $max) then
+        @ max = $list[$count]
+        @ maxc = $count
+    endif
+    
+    @ count++ 
+    echo "end count = $count"
+end
+
+# sub 1 from count; extra counting
+@ count --
+@ avg  = $sum / $count
+echo "avg = $avg "
+
+echo "Largest value is $max at index $maxc"
+
+
