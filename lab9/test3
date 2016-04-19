@@ -8,17 +8,18 @@ echo "Input is $list"
 set sum = 0
 set count = 1
 set avg = 0
-
+#use a while loop instead of foreach to calculate results
 while ( $count <= $#list )
-    echo "start count = $count"
+    #echo "start count = $count"
     @ sum = $sum + $list[$count]
-    echo "new sum = $sum"
+    #echo "new sum = $sum"
     @ count++ 
-    echo "end count = $count"
+    #echo "end count = $count"
 end
 
 # sub 1 from count; extra counting
 @ count --
+echo "sum = $sum"
 @ avg  = $sum / $count
 echo "avg = $avg "
 

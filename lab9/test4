@@ -14,9 +14,9 @@ set max = $list[1]
 set maxc = $count
 
 while ( $count <= $#list )
-    echo "start count = $count"
+    #echo "start count = $count"
     @ sum = $sum + $list[$count]
-    echo "new sum = $sum"
+    #echo "new sum = $sum"
     # check if the current index value is larger than max
     if ($list[$count] > $max) then
         @ max = $list[$count]
@@ -24,7 +24,7 @@ while ( $count <= $#list )
     endif
     
     @ count++ 
-    echo "end count = $count"
+    #echo "end count = $count"
 end
 
 # sub 1 from count; extra counting
