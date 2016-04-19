@@ -16,54 +16,60 @@
 #set $*
 #!/bin/bash
  
-while getopts ":l:n:help" opt; do
-  case $opt in
-    l)
-      echo "-l was triggered!" >&2
-      ;;
-    n)
-      echo "-n was triggered!" >&2
-      ;; 
-    help)
-      echo "--help was triggered" >&2
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      ;;
-  esac
-done
-#    case $option in
-#        l  )    echo "option long";;
-#        n  )    echo "option num";;
-#        help  ) echo "help!";;
-#        \? )    if (( (err & ERROPTS) != ERROPTS ))
-#                then
-#                    error $NOEXIT $ERROPTS "Unknown option."
-#                fi;;
-#    esac
-#done
+argcount=0;
 #echo $1; echo $2; echo $3
-#argcount=0
-#if [ "$1" = "-l" ] || [ "$2" = "-l" ] || [ "$3" = "-l" ]
-#    then
-#    echo "long"
-#    # set the flag for -l option
-#    optl=1
-#    # increment number of arguments (used for shifting)
-#    ((argcount+=1))
-#fi
-#if [ "$1" = "-n" ] || [ "$2" = "-n" ] || [ "$3" = "-n" ]
-#    then
-#    echo "num"
-#    # set the flag for -l option
-#    optn=1
-#    # increment number of arguments (used for shifting)
-#    ((argcount+=1))
-#fi
-#if test "$optl" = 1
-#    then echo "-l  $optl"
-#fi
-#if test "$optn" = 1
-#    then echo "-n  $optn"
-#fi
-#echo "argc  $argcount"
+if [ "$1" = "--help" ] || [ "$2" = "--help" ] || [ "$3" = "--help" ]
+    then
+    echo "help requested"
+    # set the flag for -l option
+    optl=1
+    # increment number of arguments (used for shifting)
+    ((argcount+=1))
+else
+    while getopts ":ln" opt; do
+      case $opt in
+        l)
+          echo "-l was triggered!" >&2
+          let argcount=argcount+1
+          ;;
+        n)
+          echo "-n was triggered!" >&2
+          let argcount=argcount+1
+          ;; 
+        \?)
+          echo "Invalid option: -$OPTARG" >&2
+          ;;
+      esac
+    done
+    echo "argcount = $argcount"
+    echo "# = $#"
+    echo "at 1 = $1"
+    echo "at 2 = $2"
+    echo "at 3 = $3"
+    shift $argcount
+    echo "at 1 = $1"
+    echo "at 2 = $2"
+    echo "at 3 = $3"
+    
+    let totalcount=$#-$argcount
+    echo "totalcount = $totalcount"
+    #if [ $totalcount = "0" ] ; then
+    if [ $# = "0" ] ; then
+        echo "Not enough arguments. Please specify a file"
+    fi
+
+    # for all files specified, move them to ~/.junk/ directory
+    for filename in $*
+    do
+        echo "Moving $filename"
+        # if .junk subdirectory doesn't exist, create it
+        if [ ! -d "~/.junk/" ]; then
+            mkdir "~/.junk/"
+        fi
+        # move the files to the .junk subdirectory
+        mv $filename "~/.junk/$filename"
+        ls $filename
+        ls "~/.junk/" 
+    done
+fi
+
